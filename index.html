@@ -1,0 +1,426 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore career pathways with FutureGuide.">
+  <title>FutureGuide | Explore Your Future</title>
+
+  <style>
+    :root {
+      --navy: #14213d;
+      --blue: #3867e8;
+      --mint: #c9f7e8;
+      --paper: #f4f6fb;
+      --muted: #64748b;
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--paper);
+      color: var(--navy);
+      line-height: 1.6;
+    }
+
+    header {
+      background: white;
+      padding: 18px 7%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .logo { font-size: 24px; font-weight: 800; }
+    .logo span { color: var(--blue); }
+    .tagline { color: var(--muted); font-size: 13px; }
+
+    main { max-width: 1050px; margin: auto; padding: 30px 20px 50px; }
+
+    .hero {
+      background: var(--navy);
+      color: white;
+      padding: clamp(28px, 6vw, 60px);
+      border-radius: 24px;
+    }
+
+    .eyebrow {
+      color: var(--mint);
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    h1 { font-size: clamp(36px, 6vw, 58px); line-height: 1.1; }
+    .hero p { max-width: 560px; color: #dce5f4; }
+    .hero strong { color: var(--mint); }
+
+    .section { margin-top: 35px; }
+    h2 { margin-bottom: 5px; }
+    .muted { color: var(--muted); margin-top: 0; }
+
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 16px;
+      padding: 22px;
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 18px;
+      margin-top: 20px;
+    }
+
+    label { display: block; font-weight: bold; margin-bottom: 7px; }
+
+    select, button {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      font: inherit;
+    }
+
+    select {
+      background: white;
+      border: 1px solid #cbd5e1;
+      color: var(--navy);
+    }
+
+    button {
+      border: 0;
+      background: var(--blue);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover { filter: brightness(.93); }
+    button:focus-visible, select:focus-visible {
+      outline: 3px solid #7be3c3;
+      outline-offset: 3px;
+    }
+
+    .results-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    #count { color: var(--muted); font-size: 14px; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 17px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .emoji { font-size: 30px; }
+
+    .pill {
+      background: #eaf0ff;
+      color: #284bb8;
+      border-radius: 30px;
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .card h3 { margin-bottom: 5px; }
+    .card p { color: var(--muted); margin-top: 5px; }
+    .skills { font-size: 13px; }
+    .card button { margin-top: auto; }
+
+    .notice {
+      background: #e4f7ef;
+      border-radius: 14px;
+      padding: 18px;
+      margin-top: 28px;
+      font-size: 14px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    dialog {
+      width: min(500px, calc(100% - 30px));
+      border: 0;
+      border-radius: 18px;
+      padding: 26px;
+      color: var(--navy);
+    }
+
+    dialog::backdrop { background: #0b1737bb; }
+    dialog button { margin-top: 12px; }
+
+    @media (max-width: 500px) {
+      header { padding: 14px 5%; }
+      .tagline { display: none; }
+      main { padding: 20px 14px 40px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">Future<span>Guide</span></div>
+    <div class="tagline">Discover. Understand. Decide.</div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">YOUR FUTURE, YOUR CHOICE</div>
+      <h1>Don't just choose a career.<br><strong>Understand it.</strong></h1>
+      <p>
+        Explore career paths, discover useful skills, and find
+        your next step with more confidence.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Explore your possibilities</h2>
+      <p class="muted">
+        Select your interests to discover career pathways.
+      </p>
+
+      <div class="controls">
+        <div>
+          <label for="interest">What interests you?</label>
+          <select id="interest">
+            <option value="all">All careers</option>
+            <option value="technology">Technology & computers</option>
+            <option value="machines">Machines & engineering</option>
+            <option value="health">Health & helping people</option>
+            <option value="research">Science & research</option>
+            <option value="creative">Design & creativity</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="stage">Your current stage</label>
+          <select id="stage">
+            <option value="school">School student</option>
+            <option value="after12">After Class 12</option>
+            <option value="college">College student</option>
+            <option value="exploring">Just exploring</option>
+          </select>
+        </div>
+
+        <div style="align-self:end">
+          <button id="explore">Explore careers →</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="results" aria-live="polite">
+      <div class="results-head">
+        <h2>Career pathways</h2>
+        <span id="count"></span>
+      </div>
+      <div class="cards" id="cards"></div>
+    </section>
+
+    <div class="notice">
+      <strong>Important:</strong> These are starter suggestions,
+      not AI predictions. Course eligibility, salaries, and job
+      prospects vary. Verify important decisions with official sources.
+    </div>
+  </main>
+
+  <dialog id="details">
+    <h2 id="detailTitle">Career details</h2>
+    <p id="detailDescription"></p>
+    <p><strong>Useful skills:</strong> <span id="detailSkills"></span></p>
+    <p><strong>Suggested next step:</strong> <span id="detailRoute"></span></p>
+    <button id="closeDetails">Close</button>
+  </dialog>
+
+  <footer>FutureGuide © 2026 | Career discovery prototype</footer>
+
+  <script>
+    const careers = [
+      {
+        name: "Software Developer",
+        emoji: "💻",
+        category: "Technology",
+        tags: ["technology"],
+        description: "Build websites, apps, and software to solve problems.",
+        skills: "Programming, logic, problem-solving",
+        route: "Learn programming fundamentals and build small projects."
+      },
+      {
+        name: "AI / Machine Learning Engineer",
+        emoji: "🤖",
+        category: "Technology",
+        tags: ["technology", "research"],
+        description: "Build computer systems that learn patterns from data.",
+        skills: "Python, mathematics, statistics",
+        route: "Start with programming, mathematics, and data basics."
+      },
+      {
+        name: "Mechanical Engineer",
+        emoji: "⚙️",
+        category: "Engineering",
+        tags: ["machines"],
+        description: "Design and improve machines and mechanical systems.",
+        skills: "Physics, design, problem-solving",
+        route: "Research engineering courses and their admission requirements."
+      },
+      {
+        name: "Robotics Engineer",
+        emoji: "🦾",
+        category: "Engineering",
+        tags: ["machines", "technology"],
+        description: "Combine mechanics, electronics, and software to build robots.",
+        skills: "Programming, electronics, mathematics",
+        route: "Explore robotics projects and engineering study pathways."
+      },
+      {
+        name: "Biomedical Engineer",
+        emoji: "🧬",
+        category: "Health & Engineering",
+        tags: ["health", "research"],
+        description: "Develop technologies used in healthcare and medical devices.",
+        skills: "Biology, engineering, analytical thinking",
+        route: "Research biomedical engineering courses and eligibility."
+      },
+      {
+        name: "Research Scientist",
+        emoji: "🔬",
+        category: "Research",
+        tags: ["research"],
+        description: "Investigate questions and test scientific ideas.",
+        skills: "Scientific reasoning, mathematics, communication",
+        route: "Explore science degrees and further study requirements."
+      },
+      {
+        name: "Healthcare Professional",
+        emoji: "🩺",
+        category: "Healthcare",
+        tags: ["health"],
+        description: "Support people's health through a suitable healthcare profession.",
+        skills: "Communication, scientific knowledge, teamwork",
+        route: "Choose a specific role and verify its required qualifications."
+      },
+      {
+        name: "UI / UX Designer",
+        emoji: "🎨",
+        category: "Design",
+        tags: ["creative", "technology"],
+        description: "Make digital products easier and more useful to navigate.",
+        skills: "Design, research, communication",
+        route: "Learn design fundamentals and build a practice portfolio."
+      },
+      {
+        name: "Graphic Designer",
+        emoji: "✏️",
+        category: "Design",
+        tags: ["creative"],
+        description: "Communicate ideas through graphics, layouts, and typography.",
+        skills: "Visual communication, typography, creativity",
+        route: "Practice design fundamentals and create a portfolio."
+      }
+    ];
+
+    const interest = document.getElementById("interest");
+    const stage = document.getElementById("stage");
+    const cards = document.getElementById("cards");
+    const count = document.getElementById("count");
+    const dialog = document.getElementById("details");
+
+    function renderCareers() {
+      const selected = interest.value;
+
+      const matches = selected === "all"
+        ? careers
+        : careers.filter(career => career.tags.includes(selected));
+
+      cards.replaceChildren();
+      count.textContent = `${matches.length} starter pathways`;
+
+      matches.forEach(career => {
+        const card = document.createElement("article");
+        card.className = "card";
+
+        const emoji = document.createElement("div");
+        emoji.className = "emoji";
+        emoji.textContent = career.emoji;
+
+        const pill = document.createElement("span");
+        pill.className = "pill";
+        pill.textContent = career.category;
+
+        const title = document.createElement("h3");
+        title.textContent = career.name;
+
+        const description = document.createElement("p");
+        description.textContent = career.description;
+
+        const skills = document.createElement("p");
+        skills.className = "skills";
+        skills.textContent = `Skills: ${career.skills}`;
+
+        const button = document.createElement("button");
+        button.textContent = "Explore this career";
+        button.addEventListener("click", () => showDetails(career));
+
+        card.append(emoji, pill, title, description, skills, button);
+        cards.append(card);
+      });
+    }
+
+    function showDetails(career) {
+      document.getElementById("detailTitle").textContent = career.name;
+      document.getElementById("detailDescription").textContent =
+        career.description;
+      document.getElementById("detailSkills").textContent = career.skills;
+
+      const stageLabels = {
+        school: "Explore relevant school subjects and beginner projects.",
+        after12: "Check course eligibility, entrance exams, and institutions.",
+        college: "Explore specializations, projects, and internships.",
+        exploring: "Compare several pathways before deciding."
+      };
+
+      document.getElementById("detailRoute").textContent =
+        `${stageLabels[stage.value]} ${career.route}`;
+
+      dialog.showModal();
+    }
+
+    document.getElementById("explore").addEventListener("click", () => {
+      renderCareers();
+      document.getElementById("results").scrollIntoView({
+        behavior: "smooth"
+      });
+    });
+
+    document.getElementById("closeDetails").addEventListener("click", () => {
+      dialog.close();
+    });
+
+    interest.addEventListener("change", renderCareers);
+    renderCareers();
+  </script>
+</body>
+</html>
